@@ -20,6 +20,4 @@ public class Product {
     private Integer id;
     private String name;
     private String price;
-    @OneToOne(mappedBy = "product")
-    private UserOrder userOrder;
 }

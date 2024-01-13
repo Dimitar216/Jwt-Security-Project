@@ -34,8 +34,7 @@ public class User implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToOne(mappedBy = "user")
-    private UserOrder userOrder;
+
 
     /**
      * class that returns a list of the roles of all users

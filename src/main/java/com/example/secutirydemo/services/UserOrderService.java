@@ -39,7 +39,7 @@ public class UserOrderService {
     public void deleteUserOrder(Integer userOrderId) {
         boolean exists = userOrderRepository.existsById(userOrderId);
         if (!exists){
-            throw new IllegalStateException("student with id "+userOrderId+" does not exist");
+            throw new IllegalStateException("User order with id "+userOrderId+" does not exist");
         }
         userOrderRepository.deleteById(userOrderId);
     }
@@ -49,7 +49,7 @@ public class UserOrderService {
         User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException("User with id "+userId+"does not exist"));
         Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalStateException("User with id "+productId+"does not exist"));
         userOrder.setQuantity(quantity);
-        userOrder.setProduct(product);
-        userOrder.setUser(user);
+        userOrder.setProduct(product.getId());
+        userOrder.setUser(user.getId());
     }
 }
