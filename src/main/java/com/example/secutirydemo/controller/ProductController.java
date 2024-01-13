@@ -28,7 +28,12 @@ public class ProductController {
     }
 
     @DeleteMapping(path = "{productId}")
-    public void deleteStudent(@PathVariable("productId") Integer productId){
-        productService.deleteStudent(productId);
+    public void deleteProduct(@PathVariable("productId") Integer productId){
+        productService.deleteProduct(productId);
+    }
+
+    @PutMapping(path = "{productId}")
+    public void updateProduct(@PathVariable("productId") Integer productId,@RequestParam(required = false) String name,@RequestParam(required = false) String price){
+        productService.updateProduct(productId,name,price);
     }
 }

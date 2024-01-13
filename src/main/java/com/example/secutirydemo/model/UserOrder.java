@@ -20,11 +20,9 @@ public class UserOrder {
     private Integer id;
     private String quantity;
 
-
     @OneToOne(cascade = CascadeType.ALL,targetEntity = User.class)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
-
 
     @OneToOne(cascade = CascadeType.ALL,targetEntity = Product.class)
     @JoinColumn(name = "product_id",referencedColumnName = "id")

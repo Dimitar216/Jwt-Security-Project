@@ -2,10 +2,12 @@ package com.example.secutirydemo.services;
 
 import com.example.secutirydemo.model.Product;
 import com.example.secutirydemo.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -29,7 +31,7 @@ public class ProductService {
         }
         productRepository.save(product);
     }
-    public void deleteStudent(Integer productId) {
+    public void deleteProduct(Integer productId) {
         boolean exists = productRepository.existsById(productId);
         if (!exists){
             throw new IllegalStateException("student with id "+productId+" does not exist");
@@ -37,4 +39,15 @@ public class ProductService {
         productRepository.deleteById(productId);
     }
 
+    @Transactional
+    public void updateProduct(Integer productId, String name, String price) {
+        Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalStateException("Product with id "+productId+"does not exist"));
+
+        if(name != null && !name.isEmpty() &&!Objects.equals(product.getName(),name)){
+            product.setName(name);
+        }
+        if(price != null && !price.isEmpty() &&!Objects.equals(product.getPrice(),price)){
+            product.setPrice(price);
+        }
+    }
 }
